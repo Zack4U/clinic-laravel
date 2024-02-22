@@ -1,11 +1,16 @@
 package com.spring.clinic.clinicspring.entity;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import org.springframework.data.annotation.Id;
 
+@Entity
 public class Odontologo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombres, apellidos, especialidad, telefono, email;
 

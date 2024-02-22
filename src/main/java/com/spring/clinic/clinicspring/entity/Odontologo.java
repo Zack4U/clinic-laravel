@@ -1,19 +1,16 @@
 package com.spring.clinic.clinicspring.entity;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
 
 public class Odontologo {
 
     @Id
     private int id;
-    private String nombres;
-    private String apellidos;
-    private String especialidad;
-    private String telefono;
-    private String email;
+    private String nombres, apellidos, especialidad, telefono, email;
 
     // Constructor con parámetros
-    public Odontologo(int id, String nombres, String apellidos,
+    public void Odontologo(int id, String nombres, String apellidos,
             String especialidad, String telefono, String email) {
         this.id = id;
         this.nombres = nombres;
@@ -44,16 +41,16 @@ public class Odontologo {
         return telefono;
     }
 
-    String getEmail() {
+    public String getEmail() {
         return email;
     }
 
     // Setter methods
-    void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    void setNombres(String nombres) {
+    public void setNombres(String nombres) {
         this.nombres = nombres;
     }
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Editar Odontólogo</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Editar Odontólogo</h1>
+            <form
+                th:action="@{'/odontologos/edit/' + ${odontologo.id}}"
+                method="post"
+            >
+                <input type="hidden" th:value="${odontologo.id}" name="id" />
+                <div class="form-group">
+                    <label for="nombres">Nombres</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nombres"
+                        th:value="${odontologo.nombres}"
+                        name="nombres"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="apellidos"
+                        th:value="${odontologo.apellidos}"
+                        name="apellidos"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="especialidad">Especialidad</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="especialidad"
+                        th:value="${odontologo.especialidad}"
+                        name="especialidad"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="telefono"
+                        th:value="${odontologo.telefono}"
+                        name="telefono"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        th:value="${odontologo.email}"
+                        name="email"
+                        required
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

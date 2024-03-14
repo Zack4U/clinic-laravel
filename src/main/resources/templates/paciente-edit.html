@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Editar Paciente</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Editar Paciente</h1>
+            <form
+                th:action="@{'/pacientes/edit/' + ${paciente.cedula}}"
+                method="post"
+            >
+                <label for="nombres">Cedula:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cedula"
+                    th:value="${paciente.cedula}"
+                    name="cedula"
+                    readonly
+                />
+                <div class="form-group">
+                    <label for="nombres">Nombres</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nombres"
+                        th:value="${paciente.nombres}"
+                        name="nombres"
+                        required
+                        readonly
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="apellidos"
+                        th:value="${paciente.apellidos}"
+                        name="apellidos"
+                        required
+                        readonly
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="especialidad">Fecha de Nacimiento</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="fechaNacimiento"
+                        th:value="${paciente.fechaNacimiento}"
+                        name="fechaNacimiento"
+                        required
+                        readonly
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="telefono"
+                        th:value="${paciente.telefono}"
+                        name="telefono"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        th:value="${paciente.email}"
+                        name="email"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="email">Direccion</label>
+                    <input
+                        type="string"
+                        class="form-control"
+                        id="direccion"
+                        th:value="${paciente.direccion}"
+                        name="direccion"
+                        required
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,5 +1,8 @@
 package com.clinica.demo.model;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity; // Import the Entity class
 import jakarta.persistence.GeneratedValue;
@@ -18,10 +21,10 @@ public class Cita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "fecha", nullable = false, length = 30)
-    private String fecha;
+    private Date fecha;
     @Column(name = "hora", nullable = false, length = 30)
     private String hora;
-    @Column(name = "motivo", nullable = false, length = 30)
+    @Column(name = "motivo", nullable = false, length = 80)
     private String motivo;
     @Column(name = "estado", nullable = false, length = 30)
     private String estado;
@@ -47,7 +50,7 @@ public class Cita {
     public Cita() {
     }
 
-    public Cita(int id, String fecha, String hora, String motivo, Tratamiento tratamiento, String estado,
+    public Cita(int id, Date fecha, String hora, String motivo, Tratamiento tratamiento, String estado,
             Paciente paciente, Odontologo odontologo) {
         this.id = id;
         this.fecha = fecha;
@@ -69,11 +72,11 @@ public class Cita {
         this.id = id;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return this.fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

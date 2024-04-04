@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Historial de Citas</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Pacientes</h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Cedula</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Direccion</th>
+                        <th>Email</th>
+                        <th>Telefono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="paciente : ${pacientes}">
+                        <td th:text="${paciente.cedula}"></td>
+                        <td th:text="${paciente.nombres}"></td>
+                        <td th:text="${paciente.apellidos}"></td>
+                        <td th:text="${paciente.fechaNacimiento}"></td>
+                        <td th:text="${paciente.direccion}"></td>
+                        <td th:text="${paciente.email}"></td>
+                        <td th:text="${paciente.telefono}"></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <form
+                                    th:action="@{'/pacientes/show-historial/' + ${paciente.cedula}}"
+                                    method="get"
+                                >
+                                    <button type="submit" class="btn btn-info">
+                                        Ver Historial
+                                    </button>
+                                </form>
+                                <form
+                                    th:action="@{'/pacientes/delete-front/' + ${paciente.cedula}}"
+                                    method="get"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger"
+                                    >
+                                        Borrar
+                                    </button>
+                                </form>
+                                <form
+                                    th:action="@{'/pacientes/edit/' + ${paciente.cedula}}"
+                                    method="get"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-success"
+                                    >
+                                        Actualizar
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="location.href='/pacientes/new'"
+            >
+                Nuevo Paciente
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="location.href=''"
+            >
+                Buscar Paciente
+            </button>
+        </div>
+    </body>
+</html>

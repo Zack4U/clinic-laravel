@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Tratamientos</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Tratamientos</h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Procedimientos</th>
+                        <th>Resultados</th>
+                        <th>Medicamentos</th>
+                        <th>Instrucciones</th>
+                        <th>Tipo Tratamiento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tratamiento : ${tratamientos}">
+                        <td th:text="${tratamiento.id}"></td>
+                        <td th:text="${tratamiento.nombre}"></td>
+                        <td th:text="${tratamiento.precio}"></td>
+                        <td th:text="${tratamiento.procedimientos}"></td>
+                        <td th:text="${tratamiento.resultados}"></td>
+                        <td th:text="${tratamiento.medicamentos}"></td>
+                        <td th:text="${tratamiento.instrucciones}"></td>
+                        <td
+                            th:text="${tratamiento.tipoTratamiento.nombre}"
+                        ></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <form
+                                    th:action="@{'/tratamientos/delete-front/' + ${tratamiento.id}}"
+                                    method="get"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger"
+                                    >
+                                        Borrar
+                                    </button>
+                                </form>
+                                <form
+                                    th:action="@{'/tratamientos/edit/' + ${tratamiento.id}}"
+                                    method="get"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-success"
+                                    >
+                                        Actualizar
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="location.href='/tratamientos/new'"
+            >
+                Nuevo tratamiento
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="location.href=''"
+            >
+                Buscar tratamiento
+            </button>
+        </div>
+    </body>
+</html>

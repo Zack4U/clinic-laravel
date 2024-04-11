@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Editar Tipo Tratamiento</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Editar Tipo Tratamiento</h1>
+            <form
+                th:action="@{'/tipo_tratamiento/edit/' + ${tipo_tratamiento.id}}"
+                method="post"
+            >
+                <label for="id">ID:</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="id"
+                    th:value="${tipo_tratamiento.id}"
+                    name="id"
+                    readonly
+                />
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nombre"
+                        th:value="${tipo_tratamiento.nombre}"
+                        name="nombre"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="descripcion"
+                        th:value="${tipo_tratamiento.descripcion}"
+                        name="descripcion"
+                        required
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Guardar cambios
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

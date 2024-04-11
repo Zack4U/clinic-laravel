@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Crear Nuevo Tipo de Tratamiento</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Nuevo Tipo Tratamiento</h1>
+            <form th:action="@{/tipo_tratamiento/new}" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nombre"
+                        name="nombre"
+                        required
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripcion:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="descripcion"
+                        name="descripcion"
+                        required
+                    />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a
+                    href="/tipo_tratamiento/list-front"
+                    class="btn btn-outline-danger"
+                    >Volver al Listado</a
+                >
+            </form>
+        </div>
+    </body>
+</html>

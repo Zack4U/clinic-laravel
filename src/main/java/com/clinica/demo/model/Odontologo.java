@@ -5,24 +5,22 @@ import jakarta.persistence.Entity; // Import the Entity class
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "odontologos")
 public class Odontologo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "nombres", nullable = false, length = 45)
+    @Column(nullable = false)
     private String nombres;
-    @Column(name = "apellidos", nullable = false, length = 45)
+    @Column(nullable = false)
     private String apellidos;
-    @Column(name = "especialidad", nullable = false, length = 45)
+    @Column(nullable = false)
     private String especialidad;
-    @Column(name = "telefono", nullable = false, length = 45)
+    @Column(nullable = false)
     private String telefono;
-    @Column(name = "email", nullable = false, length = 45, unique = true)
+    @Column(nullable = false)
     private String email;
 
     public Odontologo() {
@@ -36,8 +34,6 @@ public class Odontologo {
         this.telefono = telefono;
         this.email = email;
     }
-
-    // getters and setters
 
     public int getId() {
         return this.id;

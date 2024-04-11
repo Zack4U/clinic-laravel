@@ -1,7 +1,6 @@
 package com.clinica.demo.model;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity; // Import the Entity class
@@ -10,53 +9,42 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "citas")
-
 public class Cita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "fecha", nullable = false, length = 30)
+    @Column(nullable = false)
     private Date fecha;
-    @Column(name = "hora", nullable = false, length = 30)
+    @Column(nullable = false)
     private String hora;
-    @Column(name = "motivo", nullable = false, length = 80)
+    @Column(nullable = false)
     private String motivo;
-    @Column(name = "estado", nullable = false, length = 30)
+    @Column(nullable = false)
     private String estado;
 
-    // tratamiento relacionado con la entidad tratamiento
     @ManyToOne
-    @JoinColumn(name = "tratamiento_id", nullable = false) // Nombre de la columna en la tabla de citas que almacena el
-                                                           // ID del tratamiento
-    private Tratamiento tratamiento;
-    // paciente relacionado con la entidad paciente
-    @ManyToOne
-    @JoinColumn(name = "paciente_id", nullable = true) // Nombre de la columna en la tabla de citas que almacena el ID
-                                                       // del paciente
+    @JoinColumn(name = "paciente", nullable = false)
     private Paciente paciente;
-    // odontologo relacionado con la entidad odontologo
     @ManyToOne
-    @JoinColumn(name = "odontologo_id", nullable = true) // Nombre de la columna en la tabla de citas que almacena el ID
-                                                         // del odontólogo
+    @JoinColumn(name = "tipoTratamiento", nullable = false)
+    private TipoTratamiento tipoTratamiento;
+    @ManyToOne
+    @JoinColumn(name = "odontologo", nullable = false)
     private Odontologo odontologo;
-
-    // constructors
 
     public Cita() {
     }
 
-    public Cita(int id, Date fecha, String hora, String motivo, Tratamiento tratamiento, String estado,
+    public Cita(int id, Date fecha, String hora, String motivo, String estado, TipoTratamiento tipoTratamiento,
             Paciente paciente, Odontologo odontologo) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.motivo = motivo;
-        this.tratamiento = tratamiento;
+        this.tipoTratamiento = tipoTratamiento;
         this.estado = estado;
         this.paciente = paciente;
         this.odontologo = odontologo;
@@ -96,16 +84,36 @@ public class Cita {
         this.motivo = motivo;
     }
 
-    public Tratamiento getTratamiento() {
-        return this.tratamiento;
+    public TipoTratamiento getTipoTratamiento() {
+        return this.tipoTratamiento;
     }
 
-    public void setTratamiento(Tratamiento tratamiento) {
-        this.tratamiento = tratamiento;
+    public void setTipoTratamiento(TipoTratamiento tipoTratamiento) {
+        this.tipoTratamiento = tipoTratamiento;
     }
 
     public String getEstado() {
         return this.estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Paciente getPaciente() {
+        return this.paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Odontologo getOdontologo() {
+        return this.odontologo;
+    }
+
+    public void setOdontologo(Odontologo odontologo) {
+        this.odontologo = odontologo;
     }
 
 }

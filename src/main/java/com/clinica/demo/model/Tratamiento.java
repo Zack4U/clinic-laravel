@@ -7,42 +7,52 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tratamientos")
-
 public class Tratamiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "nombre", nullable = false, length = 30)
+    @Column(nullable = false)
     private String nombre;
-    @Column(name = "descripcion", nullable = false, length = 30)
-    private String descripcion;
-    @Column(name = "costo", nullable = false, length = 30)
-    private double costo;
-    // tipo de tratamiento relacionado con la entidad tipoTratamiento
-    @ManyToOne
-    @JoinColumn(name = "tipotratamiento_id", nullable = false) // Nombre de la columna en la tabla de citas que almacena
-                                                               // el ID del tratamiento
-    private tipoTratamiento tipoTratamiento;
+    @Column(nullable = false)
+    private double precio;
+    @Column(nullable = true)
+    private String procedimientos;
+    @Column(nullable = true)
+    private String resultados;
+    @Column(nullable = true)
+    private String medicamentos;
+    @Column(nullable = true)
+    private String instrucciones;
 
-    // constructors
+    @ManyToOne
+    @JoinColumn(name = "tipoTratamiento", nullable = false)
+    private TipoTratamiento tipoTratamiento;
 
     public Tratamiento() {
     }
 
-    public Tratamiento(int id, String nombre, String descripcion, double costo, tipoTratamiento tipoTratamiento) {
+    public Tratamiento(int id, String nombre, double precio, TipoTratamiento tipoTratamiento) {
         this.id = id;
         this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.costo = costo;
+        this.precio = precio;
         this.tipoTratamiento = tipoTratamiento;
     }
 
-    // getters and setters
+    public Tratamiento(int id, String nombre, double precio, String procedimientos, String resultados,
+            String medicamentos, String instrucciones, TipoTratamiento tipoTratamiento) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.procedimientos = procedimientos;
+        this.resultados = resultados;
+        this.medicamentos = medicamentos;
+        this.instrucciones = instrucciones;
+        this.tipoTratamiento = tipoTratamiento;
+
+    }
 
     public int getId() {
         return this.id;
@@ -60,27 +70,51 @@ public class Tratamiento {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return this.descripcion;
+    public double getPrecio() {
+        return this.precio;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
-    public double getCosto() {
-        return this.costo;
+    public String getProcedimientos() {
+        return this.procedimientos;
     }
 
-    public void setCosto(double costo) {
-        this.costo = costo;
+    public void setProcedimientos(String procedimientos) {
+        this.procedimientos = procedimientos;
     }
 
-    public tipoTratamiento getTipoTratamiento() {
+    public String getResultados() {
+        return this.resultados;
+    }
+
+    public void setResultados(String resultados) {
+        this.resultados = resultados;
+    }
+
+    public String getMedicamentos() {
+        return this.medicamentos;
+    }
+
+    public void setMedicamentos(String medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+
+    public String getInstrucciones() {
+        return this.instrucciones;
+    }
+
+    public void setInstrucciones(String instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
+    public TipoTratamiento getTipoTratamiento() {
         return this.tipoTratamiento;
     }
 
-    public void setTipoTratamiento(tipoTratamiento tipoTratamiento) {
+    public void setTipoTratamiento(TipoTratamiento tipoTratamiento) {
         this.tipoTratamiento = tipoTratamiento;
     }
 

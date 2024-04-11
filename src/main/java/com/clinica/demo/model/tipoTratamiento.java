@@ -5,36 +5,26 @@ import jakarta.persistence.Entity; // Import the Entity class
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tipoTratamientos")
-
-public class tipoTratamiento {
+public class TipoTratamiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "nombre", nullable = false, length = 30)
+    @Column(nullable = false)
     private String nombre;
-    @Column(name = "descripcion", nullable = false, length = 30)
+    @Column(nullable = false)
     private String descripcion;
-    @Column(name = "costo", nullable = false, length = 30)
-    private double costo;
 
-    // constructors
-
-    public tipoTratamiento() {
+    public TipoTratamiento() {
     }
 
-    public tipoTratamiento(int id, String nombre, String descripcion, double costo) {
+    public TipoTratamiento(int id, String nombre, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.costo = costo;
     }
-
-    // getters and setters
 
     public int getId() {
         return this.id;
@@ -59,13 +49,4 @@ public class tipoTratamiento {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public double getCosto() {
-        return this.costo;
-    }
-
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
-
 }

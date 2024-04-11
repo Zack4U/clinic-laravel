@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Crear Nuevo Paciente</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Nuevo Tratamiento</h1>
+            <form th:action="@{/tratamientos/new}" method="post">
+                <div class="form-group">
+                    <label for="nombres">Nombre:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nombre"
+                        name="nombre"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="precio"
+                        name="precio"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="procedimientos">Procedimientos:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="procedimientos"
+                        name="procedimientos"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="resultados">Resultados:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="resultados"
+                        name="resultados"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="medicamentos">Medicamentos:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="medicamentos"
+                        name="medicamentos"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="instrucciones">Instrucciones:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="instrucciones"
+                        name="instrucciones"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoTratamiento">Tipo Tratamiento:</label>
+                    <select
+                        class="form-control"
+                        id="tipoTratamiento"
+                        name="tipoTratamiento"
+                        required
+                    >
+                        <option value="">
+                            Seleccione un tipo de tratamiento
+                        </option>
+                        <option
+                            th:each="tipo : ${tipos}"
+                            th:value="${tipo.id}"
+                            th:text="${tipo.nombre}"
+                        ></option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a
+                    href="/tratamientos/list-front"
+                    class="btn btn-outline-danger"
+                    >Volver al Listado</a
+                >
+            </form>
+        </div>
+    </body>
+</html>

@@ -3,34 +3,26 @@ package com.clinica.demo.model;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity; // Import the Entity class
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "pacientes")
-
 public class Paciente {
 
     @Id
-    @Column(name = "cedula", nullable = false, length = 10)
     private int cedula;
-    @Column(name = "nombres", nullable = false, length = 30)
+    @Column(nullable = false)
     private String nombres;
-    @Column(name = "apellidos", nullable = false, length = 30)
+    @Column(nullable = false)
     private String apellidos;
-    @Column(name = "telefono", nullable = false, length = 30)
+    @Column(nullable = false)
     private String telefono;
-    @Column(name = "email", nullable = false, length = 50, unique = true)
+    @Column(nullable = false)
     private String email;
-    @Column(name = "direccion", nullable = false, length = 80)
+    @Column(nullable = false)
     private String direccion;
-    @Column(name = "fechaNacimiento", nullable = false, length = 30)
+    @Column(nullable = false)
     private Date fechaNacimiento;
-
-    // constructors
 
     public Paciente() {
     }
@@ -45,8 +37,6 @@ public class Paciente {
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
     }
-
-    // getters and setters
 
     public int getCedula() {
         return this.cedula;

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Lista de Citas</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Citas</h1>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                        <th>Tipo de Tratamiento</th>
+                        <th>Paciente</th>
+                        <th>Odontologo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cita : ${citas}">
+                        <td th:text="${cita.id}"></td>
+                        <td th:text="${cita.fecha}"></td>
+                        <td th:text="${cita.hora}"></td>
+                        <td th:text="${cita.motivo}"></td>
+                        <td th:text="${cita.estado}"></td>
+                        <td th:text="${cita.tipoTratamiento.nombre}"></td>
+                        <td
+                            th:text="${cita.paciente.nombres + ' ' + cita.paciente.apellidos}"
+                        ></td>
+                        <td
+                            th:text="${cita.odontologo.nombres + ' ' + cita.odontologo.apellidos}"
+                        ></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <form
+                                    th:action="@{'/citas/delete-front/' + ${cita.id}}"
+                                    method="get"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger"
+                                    >
+                                        Cancelar
+                                    </button>
+                                </form>
+                                <form
+                                    th:action="@{'/citas/edit/' + ${cita.id}}"
+                                    method="get"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-success"
+                                    >
+                                        Actualizar
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="location.href='/citas/new'"
+            >
+                Nueva cita
+            </button>
+            <button
+                type="button"
+                class="btn btn-primary"
+                onclick="location.href=''"
+            >
+                Buscar cita
+            </button>
+        </div>
+    </body>
+</html>

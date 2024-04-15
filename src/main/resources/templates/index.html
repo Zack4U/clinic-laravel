@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="base :: head">
+        <meta charset="UTF-8" />
+        <title>My Clinic</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <nav th:replace="base :: nav"></nav>
+        <div th:fragment="content">
+            <div class="container text-center">
+                <div class="mb-5">
+                    <h1
+                        class="text-center font-weight-bold display-3 text-primary"
+                    >
+                        <em>Sistema de Información Clínico</em>
+                    </h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    ODONTOLOGOS
+                                </h5>
+
+                                <div class="list-group">
+                                    <a
+                                        href="/odontologos/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/odontologos/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    PACIENTES
+                                </h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/pacientes/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/pacientes/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">CITAS</h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/citas/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/citas/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    TRATAMIENTOS
+                                </h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/tratamientos/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/tratamientos/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    TIPOS DE TRATAMIENTO
+                                </h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/tipos_tratamientos/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/tipos_tratamientos/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    HISTORIAS
+                                </h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/historial/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/historial/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script th:replace="base :: script"></script>
+    </body>
+</html>

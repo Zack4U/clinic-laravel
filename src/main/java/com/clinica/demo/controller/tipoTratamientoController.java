@@ -6,20 +6,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.clinica.demo.exceptions.ResourceNotFoundException;
-import com.clinica.demo.model.Paciente;
 import com.clinica.demo.model.TipoTratamiento;
 import com.clinica.demo.repository.TipoTratamientoRepository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/tipos_tratamientos")
@@ -63,9 +58,11 @@ public class tipoTratamientoController {
     // eliminar un tipo de tratamiento por id
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
-        TipoTratamiento tipoTratamientoExistente = tipoTratamientoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe el tipo de tratamiento con el id: " + id));
-        tipoTratamientoRepository.deleteById(id);
+        try {
+            tipoTratamientoRepository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
         return "redirect:/tipo_tratamiento/list-front";
     }
 

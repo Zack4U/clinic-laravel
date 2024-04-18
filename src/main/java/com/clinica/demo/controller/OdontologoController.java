@@ -60,9 +60,11 @@ public class OdontologoController {
     // Eliminar un odontologo por id
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
-        Odontologo odontologo = odontologoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe el odontologo con el id: " + id));
-        odontologoRepository.deleteById(id);
+        try {
+            odontologoRepository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
         return "redirect:/odontologos/list-front";
     }
 

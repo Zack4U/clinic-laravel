@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{base :: head}">
-        <title>Lista de Tratamientos</title>
+        <title>Lista de Historiales</title>
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,48 +11,44 @@
         <nav th:replace="~{base :: nav}"></nav>
         <div th:fragment="content">
             <div class="container">
-                <h1>Tratamientos</h1>
+                <h1>Historias</h1>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Procedimientos</th>
-                            <th>Resultados</th>
-                            <th>Medicamentos</th>
-                            <th>Instrucciones</th>
-                            <th>Tipo Tratamiento</th>
+                            <th>Fecha</th>
+                            <th>Tratamiento</th>
+                            <th>Paciente</th>
+                            <th>Odontologo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="tratamiento : ${tratamientos}">
-                            <td th:text="${tratamiento.id}"></td>
-                            <td th:text="${tratamiento.nombre}"></td>
-                            <td th:text="${tratamiento.precio}"></td>
-                            <td th:text="${tratamiento.procedimientos}"></td>
-                            <td th:text="${tratamiento.resultados}"></td>
-                            <td th:text="${tratamiento.medicamentos}"></td>
-                            <td th:text="${tratamiento.instrucciones}"></td>
+                        <tr th:each="historial : ${historiales}">
+                            <td th:text="${historial.id}"></td>
+                            <td th:text="${historial.fecha}"></td>
+                            <td th:text="${historial.tratamiento.nombre}"></td>
                             <td
-                                th:text="${tratamiento.tipoTratamiento.nombre}"
+                                th:text="${historial.paciente.nombres + ' ' + historial.paciente.apellidos}"
+                            ></td>
+                            <td
+                                th:text="${historial.odontologo.nombres + ' ' + historial.odontologo.apellidos}"
                             ></td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <form
-                                        th:action="@{'/tratamientos/delete-front/' + ${tratamiento.id}}"
+                                        th:action="@{'/historiales/delete-front/' + ${historial.id}}"
                                         method="get"
                                     >
                                         <button
                                             type="submit"
                                             class="btn btn-danger"
                                         >
-                                            Borrar
+                                            Cancelar
                                         </button>
                                     </form>
                                     <form
-                                        th:action="@{'/tratamientos/edit/' + ${tratamiento.id}}"
+                                        th:action="@{'/historiales/edit/' + ${historial.id}}"
                                         method="get"
                                     >
                                         <button
@@ -70,16 +66,16 @@
                 <button
                     type="button"
                     class="btn btn-primary"
-                    onclick="location.href='/tratamientos/new'"
+                    onclick="location.href='/historiales/new'"
                 >
-                    Nuevo tratamiento
+                    Nuevo historial
                 </button>
                 <button
                     type="button"
                     class="btn btn-primary"
                     onclick="location.href=''"
                 >
-                    Buscar tratamiento
+                    Buscar historial
                 </button>
             </div>
         </div>

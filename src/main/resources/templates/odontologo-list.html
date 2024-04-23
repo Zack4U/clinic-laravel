@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head th:replace="~{base :: head}">
         <title>Lista de Odontólogos</title>
         <link
             rel="stylesheet"
@@ -8,71 +8,77 @@
         />
     </head>
     <body>
-        <div class="container">
-            <h1>Odontólogos</h1>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Especialidad</th>
-                        <th>Teléfono</th>
-                        <th>Email</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="odontologo : ${odontologos}">
-                        <td th:text="${odontologo.id}"></td>
-                        <td th:text="${odontologo.nombres}"></td>
-                        <td th:text="${odontologo.apellidos}"></td>
-                        <td th:text="${odontologo.especialidad}"></td>
-                        <td th:text="${odontologo.telefono}"></td>
-                        <td th:text="${odontologo.email}"></td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <form
-                                    th:action="@{'/odontologos/delete-front/' + ${odontologo.id}}"
-                                    method="get"
-                                >
-                                    <button
-                                        type="submit"
-                                        class="btn btn-danger"
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1>Odontólogos</h1>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Especialidad</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="odontologo : ${odontologos}">
+                            <td th:text="${odontologo.id}"></td>
+                            <td th:text="${odontologo.nombres}"></td>
+                            <td th:text="${odontologo.apellidos}"></td>
+                            <td th:text="${odontologo.especialidad}"></td>
+                            <td th:text="${odontologo.telefono}"></td>
+                            <td th:text="${odontologo.email}"></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <form
+                                        th:action="@{'/odontologos/delete-front/' + ${odontologo.id}}"
+                                        method="get"
                                     >
-                                        Borrar
-                                    </button>
-                                </form>
-                                <form
-                                    th:action="@{'/odontologos/edit/' + ${odontologo.id}}"
-                                    method="get"
-                                >
-                                    <button
-                                        type="submit"
-                                        class="btn btn-success"
+                                        <button
+                                            type="submit"
+                                            class="btn btn-danger"
+                                        >
+                                            Borrar
+                                        </button>
+                                    </form>
+                                    <form
+                                        th:action="@{'/odontologos/edit/' + ${odontologo.id}}"
+                                        method="get"
                                     >
-                                        Actualizar
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button
-                type="button"
-                class="btn btn-primary"
-                onclick="location.href='/odontologos/new'"
-            >
-                Nuevo odontólogo
-            </button>
-            <button
-                type="button"
-                class="btn btn-primary"
-                onclick="location.href=''"
-            >
-                Buscar odontólogo
-            </button>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-success"
+                                        >
+                                            Actualizar
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="location.href='/odontologos/new'"
+                >
+                    Nuevo odontólogo
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="location.href=''"
+                >
+                    Buscar odontólogo
+                </button>
+            </div>
         </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

@@ -36,7 +36,7 @@ public class TratamientoController {
                 .orElse(null);
         tratamiento.setTipoTratamiento(tipoTratamiento);
         tratamientoRepository.save(tratamiento);
-        model.addAttribute("mensaje", "Tipo de tratamiento creado correctamente");
+        model.addAttribute("mensaje", "Tratamiento creado correctamente");
         return "tratamiento-new_res";
     }
 
@@ -51,7 +51,7 @@ public class TratamientoController {
     @PostMapping("/edit/{id}")
     public String update(@PathVariable int id, @ModelAttribute Tratamiento tratamiento, Model model) {
         Tratamiento tratamientoExistente = tratamientoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No existe el tipo de tratamiento con el id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No existe el tratamiento con el id: " + id));
         tratamientoExistente.setInstrucciones(tratamiento.getInstrucciones());
         tratamientoExistente.setPrecio(tratamiento.getPrecio());
         tratamientoExistente.setNombre(tratamiento.getNombre());
@@ -61,7 +61,7 @@ public class TratamientoController {
         tratamientoExistente.setTipoTratamiento(tratamiento.getTipoTratamiento());
         // Actualizar otros campos según sea necesario
         tratamientoRepository.save(tratamientoExistente);
-        model.addAttribute("mensaje", "Tipo de Tratamiento editado correctamente");
+        model.addAttribute("mensaje", "Tratamiento editado correctamente");
         return "tratamiento-edit_res";
     }
 

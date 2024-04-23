@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head th:replace="~{base :: head}">
         <title>Confirmar Eliminación de Paciente</title>
         <link
             rel="stylesheet"
@@ -8,17 +8,26 @@
         />
     </head>
     <body>
-        <div class="container">
-            <h1 class="mt-5">Eliminación de Paciente</h1>
-            <p>¿Estás seguro de que deseas eliminar este registro?</p>
-            <form th:action="@{'/pacientes/delete/' + ${cedula}}" method="post">
-                <button type="submit" class="btn btn-danger mr-2">
-                    Eliminar
-                </button>
-                <a href="/pacientes/list-front" class="btn btn-secondary"
-                    >Cancelar</a
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Eliminación de Paciente</h1>
+                <p>¿Estás seguro de que deseas eliminar este registro?</p>
+                <form
+                    th:action="@{'/pacientes/delete/' + ${cedula}}"
+                    method="post"
                 >
-            </form>
+                    <button type="submit" class="btn btn-danger mr-2">
+                        Eliminar
+                    </button>
+                    <a href="/pacientes/list-front" class="btn btn-secondary"
+                        >Cancelar</a
+                    >
+                </form>
+            </div>
         </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

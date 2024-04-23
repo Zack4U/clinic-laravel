@@ -78,8 +78,13 @@ public class CitaController {
 
     // Metodo para eliminar una cita
     @PostMapping("/delete/{id}")
-    public void delete(@PathVariable int id) {
-
+    public String delete(@PathVariable int id) {
+        try {
+            citaRepository.deleteById(id);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return "redirect:/citas/list-front";
     }
 
     // Metodo para buscar una cita por id
@@ -127,7 +132,7 @@ public class CitaController {
         if (cita.isPresent()) {
             model.addAttribute("cita", cita.get());
             ArrayList<TipoTratamiento> tratamientos = (ArrayList<TipoTratamiento>) tipoTratamientoRepository.findAll();
-            model.addAttribute("tratamientos", tratamientos);
+            model.addAttribute("tiposTratamientos", tratamientos);
             ArrayList<Odontologo> odontologos = (ArrayList<Odontologo>) odontologoRepository.findAll();
             model.addAttribute("odontologos", odontologos);
             ArrayList<Paciente> pacientes = (ArrayList<Paciente>) pacienteRepository.findAll();

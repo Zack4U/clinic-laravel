@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{base :: head}">
-        <title>Crear Nueva Cita</title>
+        <title>Editar Historia</title>
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,8 +11,12 @@
         <nav th:replace="~{base :: nav}"></nav>
         <div th:fragment="content">
             <div class="container">
-                <h1 class="mt-5">Nueva Cita</h1>
-                <form th:action="@{/citas/new}" method="post">
+                <h1 class="mt-5">Editar Historia</h1>
+                <form
+                    th:action="@{'/historiales/edit/' + ${historial.id}}"
+                    method="post"
+                >
+                    <input type="hidden" th:value="${historial.id}" name="id" />
                     <div class="form-group">
                         <label for="fecha">Fecha:</label>
                         <input
@@ -20,43 +24,9 @@
                             class="form-control"
                             id="fecha"
                             name="fecha"
+                            th:value="${historial.fecha}"
                             required
                         />
-                    </div>
-                    <div class="form-group">
-                        <label for="hora">Hora:</label>
-                        <input
-                            type="time"
-                            class="form-control"
-                            id="hora"
-                            name="hora"
-                            required
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="motivo">Motivo:</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="motivo"
-                            name="motivo"
-                            required
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label for="estado">Estado:</label>
-                        <select
-                            class="form-control"
-                            id="estado"
-                            name="estado"
-                            required
-                        >
-                            <option value="">Seleccione un estado</option>
-                            <option value="Asignada">Asignada</option>
-                            <option value="Cancelada">Cancelada</option>
-                            <option value="Pagada">Pagada</option>
-                            <option value="Finalizada">Finalizada</option>
-                        </select>
                     </div>
                     <div class="form-group">
                         <label for="paciente">Paciente:</label>
@@ -71,6 +41,7 @@
                                 th:each="paciente : ${pacientes}"
                                 th:value="${paciente.cedula}"
                                 th:text="${paciente.nombres + ' ' + paciente.apellidos}"
+                                th:selected="${historial.paciente != null && paciente.cedula == historial.paciente.cedula}"
                             ></option>
                         </select>
                     </div>
@@ -87,35 +58,30 @@
                                 th:each="odontologo : ${odontologos}"
                                 th:value="${odontologo.id}"
                                 th:text="${odontologo.nombres + ' ' + odontologo.apellidos}"
+                                th:selected="${historial.odontologo != null && odontologo.id == historial.odontologo.id}"
                             ></option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="tipoTratamiento"
-                            >Tipo de Tratamiento:</label
-                        >
+                        <label for="tratamiento">Tratamiento:</label>
                         <select
                             class="form-control"
-                            id="tipoTratamiento"
-                            name="tipoTratamiento"
+                            id="tratamiento"
+                            name="tratamiento"
                             required
                         >
-                            <option value="">
-                                Seleccione un tipo de tratamiento
-                            </option>
+                            <option value="">Seleccione un tratamiento</option>
                             <option
-                                th:each="tipoTratamiento : ${tiposTratamientos}"
-                                th:value="${tipoTratamiento.id}"
-                                th:text="${tipoTratamiento.nombre}"
+                                th:each="tratamiento : ${tratamientos}"
+                                th:value="${tratamiento.id}"
+                                th:text="${tratamiento.nombre}"
+                                th:selected="${historial.tratamiento != null && tratamiento.id == historial.tratamiento.id}"
                             ></option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">
-                        Guardar
+                        Guardar cambios
                     </button>
-                    <a href="/citas/list-front" class="btn btn-outline-danger"
-                        >Volver al Listado</a
-                    >
                 </form>
             </div>
         </div>

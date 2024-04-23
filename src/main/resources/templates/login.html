@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="base :: head">
+    <head th:replace="~{base :: head}">
         <meta charset="UTF-8" />
         <title>Login</title>
         <link
@@ -9,7 +9,7 @@
         />
     </head>
     <body>
-        <nav th:replace="base :: nav"></nav>
+        <nav th:replace="~{base :: nav}"></nav>
         <div th:fragment="content">
             <div class="container">
                 <h2>Login</h2>
@@ -53,6 +53,8 @@
                 </form>
             </div>
         </div>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

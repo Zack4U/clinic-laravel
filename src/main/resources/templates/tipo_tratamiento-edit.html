@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head th:replace="~{base :: head}">
         <title>Editar Tipo Tratamiento</title>
         <link
             rel="stylesheet"
@@ -8,10 +8,12 @@
         />
     </head>
     <body>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
         <div class="container">
             <h1 class="mt-5">Editar Tipo Tratamiento</h1>
             <form
-                th:action="@{'/tipo_tratamiento/edit/' + ${tipo_tratamiento.id}}"
+                th:action="@{'/tipos_tratamientos/edit/' + ${tipo_tratamiento.id}}"
                 method="post"
             >
                 <label for="id">ID:</label>
@@ -50,5 +52,9 @@
                 </button>
             </form>
         </div>
+        </body>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

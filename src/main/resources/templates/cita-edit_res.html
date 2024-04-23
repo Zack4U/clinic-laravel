@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="~{base :: head}">
-        <title>Respuesta Edicion Tratamiento</title>
+    <head th:replace="~{~{base :: head}}">
+        <title>Respuesta Edicion Cita</title>
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         />
     </head>
     <body>
-        <nav th:replace="~{base :: nav}"></nav>
+        <nav th:replace="~{~{base :: nav}}"></nav>
         <div th:fragment="content">
             <div class="container">
-                <h1 class="mt-5">Respuesta Edición Tratamiento</h1>
+                <h1 class="mt-5">Respuesta Edicion Cita</h1>
                 <p th:text="${mensaje}" class="lead"></p>
-                <a href="/tratamientos/list-front" class="btn btn-primary"
+                <a href="/citas/list-front" class="btn btn-primary"
                     >Volver al Listado</a
                 >
             </div>

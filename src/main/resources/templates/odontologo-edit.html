@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head th:replace="~{base :: head}">
         <title>Editar Odontólogo</title>
         <link
             rel="stylesheet"
@@ -8,72 +8,82 @@
         />
     </head>
     <body>
-        <div class="container">
-            <h1 class="mt-5">Editar Odontólogo</h1>
-            <form
-                th:action="@{'/odontologos/edit/' + ${odontologo.id}}"
-                method="post"
-            >
-                <input type="hidden" th:value="${odontologo.id}" name="id" />
-                <div class="form-group">
-                    <label for="nombres">Nombres</label>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Editar Odontólogo</h1>
+                <form
+                    th:action="@{'/odontologos/edit/' + ${odontologo.id}}"
+                    method="post"
+                >
                     <input
-                        type="text"
-                        class="form-control"
-                        id="nombres"
-                        th:value="${odontologo.nombres}"
-                        name="nombres"
-                        required
+                        type="hidden"
+                        th:value="${odontologo.id}"
+                        name="id"
                     />
-                </div>
-                <div class="form-group">
-                    <label for="apellidos">Apellidos</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="apellidos"
-                        th:value="${odontologo.apellidos}"
-                        name="apellidos"
-                        required
-                    />
-                </div>
-                <div class="form-group">
-                    <label for="especialidad">Especialidad</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="especialidad"
-                        th:value="${odontologo.especialidad}"
-                        name="especialidad"
-                        required
-                    />
-                </div>
-                <div class="form-group">
-                    <label for="telefono">Teléfono</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="telefono"
-                        th:value="${odontologo.telefono}"
-                        name="telefono"
-                        required
-                    />
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        th:value="${odontologo.email}"
-                        name="email"
-                        required
-                    />
-                </div>
-                <button type="submit" class="btn btn-primary">
-                    Guardar cambios
-                </button>
-            </form>
+                    <div class="form-group">
+                        <label for="nombres">Nombres</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nombres"
+                            th:value="${odontologo.nombres}"
+                            name="nombres"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="apellidos"
+                            th:value="${odontologo.apellidos}"
+                            name="apellidos"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="especialidad">Especialidad</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="especialidad"
+                            th:value="${odontologo.especialidad}"
+                            name="especialidad"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="telefono"
+                            th:value="${odontologo.telefono}"
+                            name="telefono"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            th:value="${odontologo.email}"
+                            name="email"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar cambios
+                    </button>
+                </form>
+            </div>
         </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

@@ -23,4 +23,8 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping("/signup")
+    public String goSignup() {
+        return "register";
+    }
 }

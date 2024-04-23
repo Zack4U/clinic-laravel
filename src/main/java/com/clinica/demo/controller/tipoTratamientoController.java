@@ -75,7 +75,7 @@ public class tipoTratamientoController {
     @GetMapping("/list-front")
     public String listFront(Model modelo) {
         ArrayList<TipoTratamiento> lista = (ArrayList<TipoTratamiento>) tipoTratamientoRepository.findAll();
-        modelo.addAttribute("tipo_tratamientos", lista);
+        modelo.addAttribute("tipos_tratamientos", lista);
         return "tipo_tratamiento-list";
     }
 

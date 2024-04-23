@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Historial de Citas</title>
+        <title>Clinic Spring</title>
         <style>
             .navbar-nav .nav-link:hover {
                 color: #007bff !important;
@@ -14,7 +14,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-grey">
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="/home">Logo</a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home </a>
+                        <a class="nav-link" href="/home">Home </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -60,7 +60,7 @@
                         </li>
                     </form>
                     <li class="nav-item" th:if="${#authentication == null}">
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link" href="/signup">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -70,4 +70,7 @@
             <!-- Este bloque será reemplazado por el contenido de cada página -->
         </div>
     </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

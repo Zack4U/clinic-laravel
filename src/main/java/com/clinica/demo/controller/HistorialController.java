@@ -139,4 +139,26 @@ public class HistorialController {
             return "redirect:/historiales/list-front";
         }
     }
+
+    @GetMapping("/list-front/{cedula}")
+    public String listFrontPaciente(@PathVariable int cedula, Model model) {
+        Optional<Paciente> paciente = pacienteRepository.findById(cedula);
+        if (paciente.isPresent()) {
+            ArrayList<Historial> historiales = historialRepository.findByPaciente(paciente.get());
+            model.addAttribute("historiales", historiales);
+            return "historial-list";
+        }
+        return "redirect:/home";
+    }
+
+    @GetMapping("/ver/{id}")
+    public String seeHistoria(@PathVariable int id, Model model) {
+        Optional<Historial> historia = historialRepository.findById(id);
+        if (historia.isPresent()) {
+            model.addAttribute("historial", historia.get());
+            return "historial-view";
+        } else {
+            return "redirect:/historiales/list-front";
+        }
+    }
 }

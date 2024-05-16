@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Crear Nuevo Odontograma</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+        <style>
+            @page {
+                size: landscape;
+            }
+            ,
+            .marco {
+                margin: 10px;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="mt-5">Odontograma</h1>
+            <!-- Parte superior izquierda y derecha -->
+            <div class="border border-primary rounded m-3 p-4">
+                <div class="row justify-content-center">
+                    <th:block
+                        th:with="start=${odontograma.dientes.size() > 20 ? 23 : 14}, end=${odontograma.dientes.size() > 20 ? 16 : 10}"
+                    >
+                        <div
+                            th:each="i: ${#numbers.sequence(start, end)}"
+                            class="marco"
+                        >
+                            <img
+                                th:id="${odontograma.dientes[i].id}"
+                                class="diente"
+                                th:src="${odontograma.dientes[i].estado.url}"
+                                th:alt="${odontograma.dientes[i].tipo.descripcion}"
+                                data-toggle="modal"
+                                data-target="#modalDiente"
+                                style="width: 50px; height: 50px"
+                            />
+                        </div>
+                    </th:block>
+                    <div
+                        style="border-right: 1px solid black; height: 50px"
+                    ></div>
+                    <th:block
+                        th:each="diente: 
+                            ${odontograma.dientes.subList(0, odontograma.dientes.size() > 20 ? 8 : 5)}"
+                    >
+                        <div class="marco">
+                            <img
+                                th:id="${diente.id}"
+                                class="diente"
+                                th:src="${diente.estado.url}"
+                                th:alt="${diente.tipo.descripcion}"
+                                data-toggle="modal"
+                                data-target="#modalDiente"
+                                style="width: 50px; height: 50px"
+                            />
+                        </div>
+                    </th:block>
+                </div>
+                <!-- Parte inferior izquierda y derecha -->
+                <div class="row justify-content-center">
+                    <th:block
+                        th:with="start=${odontograma.dientes.size() > 20 ? 31 : 19}, end=${odontograma.dientes.size() > 20 ? 24 : 15}"
+                    >
+                        <div
+                            th:each="i: ${#numbers.sequence(start, end)}"
+                            class="marco"
+                        >
+                            <img
+                                th:id="${odontograma.dientes[i].id}"
+                                class="diente"
+                                th:src="${odontograma.dientes[i].estado.url}"
+                                th:alt="${odontograma.dientes[i].tipo.descripcion}"
+                                data-toggle="modal"
+                                data-target="#modalDiente"
+                                style="width: 50px; height: 50px"
+                            />
+                        </div>
+                    </th:block>
+                    <div
+                        style="border-right: 1px solid black; height: 50px"
+                    ></div>
+                    <th:block
+                        th:each="diente: ${odontograma.dientes.subList(
+                            odontograma.dientes.size() > 20 ? 8 : 5, odontograma.dientes.size() > 20 ? 16 : 10)}"
+                    >
+                        <div class="marco">
+                            <img
+                                th:id="${diente.id}"
+                                class="diente"
+                                th:src="${diente.estado.url}"
+                                th:alt="${diente.tipo.descripcion}"
+                                data-toggle="modal"
+                                data-target="#modalDiente"
+                                style="width: 50px; height: 50px"
+                            />
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

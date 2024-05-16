@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{base :: head}">
+        <title>Editar Usuario</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Editar Usuario</h1>
+                <form th:action="@{'/users/edit/' + ${user.id}}" method="post">
+                    <label for="id">ID:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="id"
+                        th:value="${user.id}"
+                        name="id"
+                        readonly
+                    />
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            th:value="${user.email}"
+                            name="email"
+                            required
+                            readonly
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Rol:</label>
+                        <select
+                            class="form-control"
+                            id="role"
+                            name="role"
+                            required
+                        >
+                            <option value="">Seleccione un rol</option>
+                            <option
+                                th:each="role : ${roles}"
+                                th:value="${role.id}"
+                                th:text="${role.name}"
+                                th:selected="${user.role != null && role.id == user.role.id}"
+                            ></option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Guardar cambios
+                    </button>
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

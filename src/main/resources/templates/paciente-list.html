@@ -37,7 +37,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <form
-                                        th:action="@{'/pacientes/show-historial/' + ${paciente.cedula}}"
+                                        th:action="@{'/historiales/list-front/' + ${paciente.cedula}}"
                                         method="get"
                                     >
                                         <button
@@ -45,6 +45,17 @@
                                             class="btn btn-info"
                                         >
                                             Ver Historial
+                                        </button>
+                                    </form>
+                                    <form
+                                        th:action="@{'/odontogramas/list-front/' + ${paciente.cedula}}"
+                                        method="get"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="btn btn-info"
+                                        >
+                                            Ver Odontograma
                                         </button>
                                     </form>
                                     <form

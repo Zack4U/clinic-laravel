@@ -18,6 +18,13 @@
                     >
                         <em>Sistema de Información Clínico</em>
                     </h1>
+
+                    <div th:if="${email}">
+                        <h3>
+                            Bienvenido,
+                            <span th:text="${name}"></span>!
+                        </h3>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -140,6 +147,48 @@
                                     >
                                     <a
                                         href="/historiales/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    ODONTOGRAMAS
+                                </h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/odontogramas/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/odontogramas/new"
+                                        class="list-group-item list-group-item-action"
+                                        >Crear</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">
+                                    USUARIOS
+                                </h5>
+                                <div class="list-group">
+                                    <a
+                                        href="/users/list-front"
+                                        class="list-group-item list-group-item-action"
+                                        >Ver</a
+                                    >
+                                    <a
+                                        href="/users/new"
                                         class="list-group-item list-group-item-action"
                                         >Crear</a
                                     >

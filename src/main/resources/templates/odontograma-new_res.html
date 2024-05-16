@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{base :: head}">
+        <title>Respuesta Creación Odontograma</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Respuesta Creación Odontograma</h1>
+                <p th:text="${mensaje}" class="lead"></p>
+                <a href="/odontogramas/new" class="btn btn-primary"
+                    >Volver al Formulario</a
+                >
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

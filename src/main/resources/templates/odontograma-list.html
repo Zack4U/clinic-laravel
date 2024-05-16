@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{base :: head}">
-        <title>Lista de Historiales</title>
+        <title>Lista de Odontogramas</title>
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,55 +11,36 @@
         <nav th:replace="~{base :: nav}"></nav>
         <div th:fragment="content">
             <div class="container">
-                <h1>Historias</h1>
+                <h1>Odontogramas</h1>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Tratamiento</th>
                             <th>Paciente</th>
-                            <th>Odontologo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="historial : ${historiales}">
-                            <td th:text="${historial.id}"></td>
-                            <td th:text="${historial.fecha}"></td>
-                            <td th:text="${historial.tratamiento.nombre}"></td>
+                        <tr th:each="odontograma : ${odontogramas}">
+                            <td th:text="${odontograma.id}"></td>
                             <td
-                                th:text="${historial.paciente.nombres + ' ' + historial.paciente.apellidos}"
-                            ></td>
-                            <td
-                                th:text="${historial.odontologo.nombres + ' ' + historial.odontologo.apellidos}"
+                                th:text="${odontograma.paciente.nombres + ' ' + odontograma.paciente.apellidos}"
                             ></td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <form
-                                        th:action="@{'/historiales/delete-front/' + ${historial.id}}"
+                                        th:action="@{'/odontogramas/delete-front/' + ${odontograma.id}}"
                                         method="get"
                                     >
                                         <button
                                             type="submit"
                                             class="btn btn-danger"
                                         >
-                                            Cancelar
+                                            Eliminar
                                         </button>
                                     </form>
                                     <form
-                                        th:action="@{'/historiales/edit/' + ${historial.id}}"
-                                        method="get"
-                                    >
-                                        <button
-                                            type="submit"
-                                            class="btn btn-success"
-                                        >
-                                            Actualizar
-                                        </button>
-                                    </form>
-                                    <form
-                                        th:action="@{'/historiales/ver/' + ${historial.id}}"
+                                        th:action="@{'/odontogramas/ver/' + ${odontograma.id}}"
                                         method="get"
                                     >
                                         <button
@@ -77,16 +58,16 @@
                 <button
                     type="button"
                     class="btn btn-primary"
-                    onclick="location.href='/historiales/new'"
+                    onclick="location.href='/odontogramas/new'"
                 >
-                    Nuevo historial
+                    Nuevo odontograma
                 </button>
                 <button
                     type="button"
                     class="btn btn-primary"
                     onclick="location.href=''"
                 >
-                    Buscar historial
+                    Buscar odontograma
                 </button>
             </div>
         </div>

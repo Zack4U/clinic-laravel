@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{base :: head}">
-        <title>Lista de Historiales</title>
+        <title>Lista de Usuarios</title>
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -11,44 +11,34 @@
         <nav th:replace="~{base :: nav}"></nav>
         <div th:fragment="content">
             <div class="container">
-                <h1>Historias</h1>
+                <h1>Usuarios</h1>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Tratamiento</th>
-                            <th>Paciente</th>
-                            <th>Odontologo</th>
+                            <th>Email</th>
+                            <th>Rol</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="historial : ${historiales}">
-                            <td th:text="${historial.id}"></td>
-                            <td th:text="${historial.fecha}"></td>
-                            <td th:text="${historial.tratamiento.nombre}"></td>
-                            <td
-                                th:text="${historial.paciente.nombres + ' ' + historial.paciente.apellidos}"
-                            ></td>
-                            <td
-                                th:text="${historial.odontologo.nombres + ' ' + historial.odontologo.apellidos}"
-                            ></td>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.role.name}"></td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <form
-                                        th:action="@{'/historiales/delete-front/' + ${historial.id}}"
+                                        th:action="@{'/users/delete-front/' + ${user.id}}"
                                         method="get"
                                     >
                                         <button
                                             type="submit"
                                             class="btn btn-danger"
                                         >
-                                            Cancelar
+                                            Borrar
                                         </button>
                                     </form>
                                     <form
-                                        th:action="@{'/historiales/edit/' + ${historial.id}}"
+                                        th:action="@{'/users/edit/' + ${user.id}}"
                                         method="get"
                                     >
                                         <button
@@ -56,17 +46,6 @@
                                             class="btn btn-success"
                                         >
                                             Actualizar
-                                        </button>
-                                    </form>
-                                    <form
-                                        th:action="@{'/historiales/ver/' + ${historial.id}}"
-                                        method="get"
-                                    >
-                                        <button
-                                            type="submit"
-                                            class="btn btn-primary"
-                                        >
-                                            Ver
                                         </button>
                                     </form>
                                 </div>
@@ -77,16 +56,16 @@
                 <button
                     type="button"
                     class="btn btn-primary"
-                    onclick="location.href='/historiales/new'"
+                    onclick="location.href='/users/new'"
                 >
-                    Nuevo historial
+                    Nuevo Usuario
                 </button>
                 <button
                     type="button"
                     class="btn btn-primary"
                     onclick="location.href=''"
                 >
-                    Buscar historial
+                    Buscar Usuario
                 </button>
             </div>
         </div>

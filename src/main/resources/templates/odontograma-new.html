@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{base :: head}">
+        <title>Crear Nuevo Odontograma</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Nuevo Odontograma</h1>
+                <form th:action="@{/odontogramas/new}" method="post">
+                    <div class="form-group">
+                        <label for="paciente">Paciente:</label>
+                        <select
+                            class="form-control"
+                            id="paciente"
+                            name="paciente"
+                            required
+                        >
+                            <option value="">Seleccione un paciente</option>
+                            <option
+                                th:each="paciente : ${pacientes}"
+                                th:value="${paciente.cedula}"
+                                th:text="${paciente.nombres + ' ' + paciente.apellidos}"
+                            ></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                    <a
+                        href="/odontogramas/list-front"
+                        class="btn btn-outline-danger"
+                        >Volver al Listado</a
+                    >
+                </form>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{base :: head}">
+        <title>Crear Nuevo Odontograma</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+        <style>
+            .marco {
+                margin: 10px;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Odontograma</h1>
+                <!-- Parte superior izquierda y derecha -->
+                <div class="border border-primary rounded m-3 p-4">
+                    <div class="row justify-content-center">
+                        <th:block
+                            th:with="start=${odontograma.dientes.size() > 20 ? 23 : 14}, end=${odontograma.dientes.size() > 20 ? 16 : 10}"
+                        >
+                            <div
+                                th:each="i: ${#numbers.sequence(start, end)}"
+                                class="marco"
+                            >
+                                <img
+                                    th:id="${odontograma.dientes[i].id}"
+                                    class="diente"
+                                    th:src="${odontograma.dientes[i].estado.url}"
+                                    th:alt="${odontograma.dientes[i].tipo.descripcion}"
+                                    data-toggle="modal"
+                                    data-target="#modalDiente"
+                                    style="width: 50px; height: 50px"
+                                />
+                            </div>
+                        </th:block>
+                        <div
+                            style="border-right: 1px solid black; height: 50px"
+                        ></div>
+                        <th:block
+                            th:each="diente: 
+                            ${odontograma.dientes.subList(0, odontograma.dientes.size() > 20 ? 8 : 5)}"
+                        >
+                            <div class="marco">
+                                <img
+                                    th:id="${diente.id}"
+                                    class="diente"
+                                    th:src="${diente.estado.url}"
+                                    th:alt="${diente.tipo.descripcion}"
+                                    data-toggle="modal"
+                                    data-target="#modalDiente"
+                                    style="width: 50px; height: 50px"
+                                />
+                            </div>
+                        </th:block>
+                    </div>
+                    <!-- Parte inferior izquierda y derecha -->
+                    <div class="row justify-content-center">
+                        <th:block
+                            th:with="start=${odontograma.dientes.size() > 20 ? 31 : 19}, end=${odontograma.dientes.size() > 20 ? 24 : 15}"
+                        >
+                            <div
+                                th:each="i: ${#numbers.sequence(start, end)}"
+                                class="marco"
+                            >
+                                <img
+                                    th:id="${odontograma.dientes[i].id}"
+                                    class="diente"
+                                    th:src="${odontograma.dientes[i].estado.url}"
+                                    th:alt="${odontograma.dientes[i].tipo.descripcion}"
+                                    data-toggle="modal"
+                                    data-target="#modalDiente"
+                                    style="width: 50px; height: 50px"
+                                />
+                            </div>
+                        </th:block>
+                        <div
+                            style="border-right: 1px solid black; height: 50px"
+                        ></div>
+                        <th:block
+                            th:each="diente: ${odontograma.dientes.subList(
+                            odontograma.dientes.size() > 20 ? 8 : 5, odontograma.dientes.size() > 20 ? 16 : 10)}"
+                        >
+                            <div class="marco">
+                                <img
+                                    th:id="${diente.id}"
+                                    class="diente"
+                                    th:src="${diente.estado.url}"
+                                    th:alt="${diente.tipo.descripcion}"
+                                    data-toggle="modal"
+                                    data-target="#modalDiente"
+                                    style="width: 50px; height: 50px"
+                                />
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6 d-flex flex-column align-items-center">
+                        <img
+                            src="/images/diente.png"
+                            alt="Diente"
+                            style="width: 50px; height: 50px"
+                        />
+
+                        <p id="dienteDescripcion" class="mt-2">
+                            Sin seleccionar
+                        </p>
+                        <div class="container card" style="width: 18rem">
+                            <div class="card-body">
+                                <h5 class="card-title">Ultima nota</h5>
+                                <div class="card-text">
+                                    <p id="fechaNota" class="text-muted"></p>
+                                    <p id="notasDiente"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div
+                            class="container d-flex justify-content-center align-items-center"
+                            id="formNotaDiente"
+                        >
+                            <button
+                                name="addNota"
+                                id="addNota"
+                                class="btn btn-primary"
+                                th:attr="data-odontograma-id=${odontograma.id}"
+                            >
+                                Agregar nota
+                            </button>
+                            <button
+                                name="addNota"
+                                id="addNota"
+                                class="btn btn-danger"
+                                th:attr="data-odontograma-id=${odontograma.id}"
+                            >
+                                Eliminar ultima nota
+                            </button>
+                        </div>
+                        <button
+                            name="downPdf"
+                            id="downPdf"
+                            class="btn btn-primary"
+                            th:attr="data-odontograma-id=${odontograma.id}"
+                        >
+                            Descargar PDF
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <h3>Acciones</h3>
+                        <button
+                            id="dienteSano"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Diente sano
+                        </button>
+                        <button
+                            id="dienteAusente"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Diente ausente
+                        </button>
+                        <button
+                            id="dienteExtraccion"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Diente marcado para extracción
+                        </button>
+                        <button
+                            id="dienteCoronaBuena"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Corona en buen estado
+                        </button>
+                        <button
+                            id="dienteCoronaMala"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Corona en mal estado
+                        </button>
+                        <button
+                            id="dienteObturacionBuena"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Obturacion en buen estado
+                        </button>
+                        <button
+                            id="dienteObturacionMala"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Obturacion en mal estado
+                        </button>
+                        <button
+                            id="dienteSellanteBuena"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Sellante en buen estado
+                        </button>
+                        <button
+                            id="dienteSellanteMala"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Sellante en mal estado
+                        </button>
+                        <button
+                            id="dienteProtesisBuena"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Protesis parcial en buen estado
+                        </button>
+                        <button
+                            id="dienteProtesisMala"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Protesis parcial en mal estado
+                        </button>
+                        <button
+                            id="dientePresenciaAparato"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Presencia de aparato de ortodoncia
+                        </button>
+                        <button
+                            id="dienteFractura"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Fractura de corona dental
+                        </button>
+                        <button
+                            id="dienteCarie"
+                            type="button"
+                            class="btn btn-primary mb-2"
+                        >
+                            Caries dental
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="container justify-content-center">
+                <a
+                    href="/odontogramas/list-front"
+                    class="btn btn-outline-primary"
+                    >Volver al Listado</a
+                >
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script th:src="@{'/js/odontograma.js'}"></script>
+</html>

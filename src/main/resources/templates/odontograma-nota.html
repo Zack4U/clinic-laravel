@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{base :: head}">
+        <title>Odontograma - Agregar Nota</title>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <nav th:replace="~{base :: nav}"></nav>
+        <div th:fragment="content">
+            <div class="container">
+                <h1 class="mt-5">Odontograma - Agregar Nota</h1>
+                <form
+                    th:action="@{/odontogramas/ver/{odontograma_id}/diente/{diente_id}/nota/add
+                    (odontograma_id=${odontograma.id}, diente_id=${diente.id})}"
+                    method="post"
+                >
+                    <div class="form-group">
+                        <label for="contenido">Nota:</label>
+                        <textarea
+                            class="form-control"
+                            id="contenido"
+                            name="contenido"
+                            required
+                        >
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                    <a
+                        th:href="@{/odontogramas/ver/{id}(id=${odontograma.id})}"
+                        class="btn btn-outline-danger"
+                        >Volver al odontograma</a
+                    >
+                </form>
+                <hr />
+                <div class="container" th:if="${#lists.size(diente.nota) > 0}">
+                    <h2>Notas</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Contenido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="nota : ${diente.nota}">
+                                <td
+                                    th:text="${#dates.format(nota.fecha, 'dd/MM/yyyy HH:mm')}"
+                                ></td>
+                                <td th:text="${nota.contenido}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>
